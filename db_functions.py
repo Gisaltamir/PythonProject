@@ -12,6 +12,21 @@ connection = mysql.connector.connect(
 
 visited_locations= []
 correct_visited_locations= 0
+criminal_escaped= False
+
+def get_criminal_location():
+    sql = "SELECT crime_location FROM detective_game"
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchone()
+    return result
+
+def get_player_location():
+    sql = "SELECT player_location FROM detective_game"
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchone()
+    return result
 def random_visit_location(quantity):
     sql = "SELECT country_name FROM hints "
     sql += "ORDER BY RAND() "
@@ -52,6 +67,7 @@ def update_crime_location(number):
             updateQuery = (f"insert into detective_game(crime_location) values('{countries[ranNum]}');")
             cursor.execute(updateQuery)
             break
+    criminal_escaped= True
     return
 
 def display_countries():
@@ -65,3 +81,14 @@ def display_countries():
     print("\n\n")
     return
 
+def check_if_win():
+    crime_location= get_criminal_location()
+    player_location= get_player_location()
+    if player_location == crime_location:
+        print("You have catched the criminal and save the world. Well done, detective")
+        return True
+    elif criminal_escaped == True:
+        print("The criminals escaped, the world is dying. Maybe in another life, detective")
+        return True
+    else:
+        return False
