@@ -14,6 +14,24 @@ visited_locations= []
 correct_visited_locations= 0
 criminal_escaped= False
 
+def get_countries():
+    countries= "SELECT country_name FROM hints order by country_name ASC"
+    cursor= connection.cursor()
+    cursor.execute(countries)
+    result= cursor.fetchall()
+    print("\nThe countries are:")
+    for row in result:
+        print(','.join(row))
+    print("\n\n")
+    return
+
+def get_detective_name():
+    detective = "SELECT detective_name FROM detective_game"
+    cursor = connection.cursor()
+    cursor.execute(detective)
+    result = cursor.fetchone()
+    return result
+
 def get_criminal_location():
     sql = "SELECT crime_location FROM detective_game"
     cursor = connection.cursor()
@@ -27,19 +45,6 @@ def get_player_location():
     cursor.execute(sql)
     result = cursor.fetchone()
     return result
-def random_visit_location(quantity):
-    sql = "SELECT country_name FROM hints "
-    sql += "ORDER BY RAND() "
-    sql += "LIMIT " + quantity
-    cursor = connection.cursor()
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    list= []
-    if cursor.rowcount > 0:
-        for row in result:
-            s = str(row[0])
-            visited_locations.append(s)
-    return
 
 def get_hint_by_country(country):
     sql = "SELECT hint FROM hints where country_name = '" + country + "'"
@@ -53,6 +58,18 @@ def get_hint_by_country(country):
             print(decoded_string)
     return
 
+def random_visit_location(quantity):
+    sql = "SELECT country_name FROM hints "
+    sql += "ORDER BY RAND() "
+    sql += "LIMIT " + quantity
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    if cursor.rowcount > 0:
+        for row in result:
+            s = str(row[0])
+            visited_locations.append(s)
+    return
 
 def update_crime_location(number):
     fetchQuery = ("select country_name from hints;")
@@ -70,17 +87,6 @@ def update_crime_location(number):
     criminal_escaped= True
     return
 
-def display_countries():
-    countries= "SELECT country_name FROM hints"
-    cursor= connection.cursor()
-    cursor.execute(countries)
-    result= cursor.fetchall()
-    print("\nThe countries are:")
-    for row in result:
-        print(','.join(row))
-    print("\n\n")
-    return
-
 def check_if_win():
     crime_location= get_criminal_location()
     player_location= get_player_location()
@@ -92,3 +98,19 @@ def check_if_win():
         return True
     else:
         return False
+
+def check_exist_location(answer):
+    answer_check = answer.casefold()
+    answer_check = answer.capitalize()
+    if answer_check in visited_locations:
+        return answer_check
+    else:
+        print("This country is invalid! Check the countries available in display countries")
+        return
+
+def player_name():
+    name = input("Enter your name, detective: ")
+    sql = (f"insert into detective_game(detective_name) values('{name}');")
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    return name
