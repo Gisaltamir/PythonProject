@@ -1,14 +1,14 @@
 # R-Code Project: the game project for Metropolia IT Software 1
 
-R-Code Project is a flight-simulator puzzle game prototype created by Binchi Zhou, Giselle Altamiranda, Pawanrat Santiyanon and Tingyu Pan, first year students from Metropolia University of Applied Sciences. R-Code project is the final project of the course Software 1. 
+R-Code Project is a flight-simulator puzzle game prototype created by Binchi Zhou, Giselle Altamiranda, Pawanrat Santiyanon and Tingyu Pan, first year students from Metropolia University of Applied Sciences. R-Code Project is the final project of the course Software 1. 
 
 This game program uses python as the main programming language. The project database is based on the flight_game database provided by the course lecturers. The project team redesigned and named the database as "crime_game". The Python program communicate the database through MySQL driver.
 
 ## Story and background
 
-The story of R-Code project unveils in the fictional future, where the global industries are under the monopoly of a conglomerate called Conta Mega Inc. Behind the glory of the thriving Conta Mega Inc. lies a conspiracy which only a few people are aware of: Conta Mega Inc. has been secretly disposing Ricina, a toxic byproduct from Conta Mega Inc.’s affiliated factories. To hide their conducts from the public, Conta Mega Inc. has been randomly dropping a fraction of this toxic substance around the world, one country at a time. According to the ongoing investigation, five portions of Ricina have been disposed at five different locations so far. 
+The story of R-Code Project unveils in the fictional future, where the global industries are under the monopoly of a conglomerate called Conta Mega Inc. Behind the glory of the thriving Conta Mega Inc. lies a conspiracy which only a few people are aware of: Conta Mega Inc. has been secretly disposing Ricina, a toxic byproduct from Conta Mega Inc.’s affiliated factories. To hide their conducts from the public, Conta Mega Inc. has been randomly dropping a fraction of this toxic substance around the world, one country at a time. According to the ongoing investigation, five portions of Ricina have been disposed at five different locations so far. 
 
-The player is a special agent and environment specialist from the Interpol. The player is asked to investigate the case, track the location of the substances, and eventually arrest Conta Mega Inc.’s toxic disposal team and press charges before Ricina pollutes every corner of the planet Earth.
+The player is a special agent and environment specialist. The player is asked to investigate the case, track the location of the substances, and eventually arrest Conta Mega Inc.’s toxic disposal team and press charges before Ricina pollutes every corner of the planet Earth.
 
 ## Install and Run
 
@@ -19,7 +19,7 @@ Before running the game, you need to download the game database to your local co
 * Step 3: Go to your SQL console, input pass word, and execute the following command:
   * `create database crime_game;`
   * `use crime_game;`
-  * `source` *the path to crime_game.sql*;
+  * `source` the path to crime_game.sql;
 * Step 4: Change the password of database connection in db_functions.py to your own password.
 
 Now you shall be able to run the main program.
@@ -36,10 +36,10 @@ After running the program, a short text about the story and your mission will be
 > 
 > Hurry up and explore the first crime scene, before it's too late for the world...
 
-The game program will prompt you to enter your name. The name can be any combination of letters, numbers, or special characters. The name will be registered in your local database.
+The game program will prompt you to enter your name. The name can be **any combination of letters, numbers, or special characters**. The name will be registered in your local database.
 
 ### Gameplay
-As the game starts, four action options will be displayed on the console:
+As the game starts, four action options will be displayed in the console:
 
 > 1- Explore crime scene.
 > 
@@ -59,7 +59,7 @@ As the game starts, four action options will be displayed on the console:
 > * Clues where player need to decrypt with a table;
 > * Clues in morse code.
 
-As the detective, your mission is to figure out which country the clue is referring to.
+As the detective, your mission is to figure out which country the clue is referring to, and enter your answer in *3-Move to destination*.
 
 **When you enter number 2**, the game will print out a list of countries where Conta Mega Inc. could be committing their crime. This function will help you when you need to narrow down your options.
 
@@ -73,7 +73,9 @@ As the detective, your mission is to figure out which country the clue is referr
 > 
 > ...
 
-**When you enter number 3**, the game will allow you to enter the country name. The input is not case-sensitive, but you must use the correctly-spelled, standard country name as provided by the game in *Display possible countries*.
+**When you enter number 3**, the game will allow you to enter the country name. The input is not case-sensitive, but you must use the correctly-spelled, standard country name as provided by the game in *2- Display possible countries*.
+
+After you entering the country name, the game program will determine if the answer is correct.
 
 **When you enter number 4**, the game program will end. All your progress will be cleared. The next time you run the main program, it will create a new game. 
 
@@ -83,9 +85,24 @@ At the start of the game, Conta Mega Inc. has already disposed Ricina at **5** c
 
 There are two possible endings:
 
-* You **WIN** the game if you catch the criminals, i.e. you visit the country they are currently in.
+* You **WIN** the game if you catch the criminals, i.e. you visited all the countries where Conta Mega Inc. dropped Ricina, before Conta Mega reaches their **10th** destination.
 * You **LOSE** the game if Conta Mega Inc. reaches their **10th** target country.
 
 <br>
 
 Now it's your time to shine, detective! Enjoy the game and let use know what you think!
+
+<br>
+
+## Key contributors
+[Binchi Zhou](https://github.com/zeclaircie)
+
+[Giselle Altamiranda](https://github.com/Gisaltamir)
+
+[Pawanrat Santiyanon]()
+
+[Tingyu Pan]()
+
+In alphabetical order.
+
+
