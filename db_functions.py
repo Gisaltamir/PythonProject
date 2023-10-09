@@ -10,44 +10,46 @@ connection = mysql.connector.connect(
     autocommit= True
 )
 
-visited_locations= []
+name= ""
+visited_locations= ["Base", ]
 correct_visited_locations= 0
 criminal_escaped= False
+id = 0
+
 
 def get_countries():
     countries= "SELECT country_name FROM hints order by country_name ASC"
     cursor= connection.cursor()
     cursor.execute(countries)
     result= cursor.fetchall()
-    print("\nThe countries are:")
+    countries= []
     for row in result:
-        print(','.join(row))
-    print("\n\n")
-    return
+        countries.append(row[0])
+    return countries
 
-def get_detective_name():
-    detective = "SELECT detective_name FROM detective_game"
+def get_detective_name(id):
+    detective = f"SELECT detective_name FROM detective_game where id = {id}"
     cursor = connection.cursor()
     cursor.execute(detective)
     result = cursor.fetchone()
     return result
 
-def get_criminal_location():
-    sql = "SELECT crime_location FROM detective_game"
+def get_criminal_location(id):
+    sql = f"SELECT crime_location FROM detective_game where id = {id}"
     cursor = connection.cursor()
     cursor.execute(sql)
     result = cursor.fetchone()
-    return result
+    return result[0]
 
-def get_player_location():
-    sql = "SELECT player_location FROM detective_game"
+def get_player_location(id):
+    sql = f"SELECT player_location FROM detective_game where id = {id}"
     cursor = connection.cursor()
     cursor.execute(sql)
     result = cursor.fetchone()
     return result
 
 def get_hint_by_country(country):
-    sql = "SELECT hint FROM hints where country_name = '" + country + "'"
+    sql = f"SELECT hint FROM hints where country_name = '{country}'"
     cursor = connection.cursor()
     cursor.execute(sql)
     result = cursor.fetchone()
@@ -71,46 +73,72 @@ def random_visit_location(quantity):
             visited_locations.append(s)
     return
 
-def update_crime_location(number):
-    fetchQuery = ("select country_name from hints;")
+def update_player_location(id, location):
+    sql = f"UPDATE detective_game SET player_location = '{location}' where id = {id}"
     cursor = connection.cursor()
-    cursor.execute(fetchQuery)
+    cursor.execute(sql)
+    countries = cursor.fetchall()
+    return
+def update_crime_location(id, number):
+    global criminal_escaped
+    global visited_locations
+    sql = ("select country_name from hints;")
+    cursor = connection.cursor()
+    cursor.execute(sql)
     countries = cursor.fetchall()
     countries = [country[0] for country in countries]
-    while len(visited_locations) != number:
+    while len(visited_locations) < number:
         ranNum = random.randrange(0, number)
         if countries[ranNum] not in visited_locations:
             visited_locations.append(countries[ranNum])
-            updateQuery = (f"insert into detective_game(crime_location) values('{countries[ranNum]}');")
+            updateQuery = (f"UPDATE detective_game SET crime_location = '{countries[ranNum]}' WHERE id = {id}")
             cursor.execute(updateQuery)
             break
-    criminal_escaped= True
-    return
+    if len(visited_locations) == number:
+        criminal_escaped = True
+        return
 
-def check_if_win():
-    crime_location= get_criminal_location()
-    player_location= get_player_location()
-    if player_location == crime_location:
-        print("You have catched the criminal and save the world. Well done, detective")
-        return True
-    elif criminal_escaped == True:
-        print("The criminals escaped, the world is dying. Maybe in another life, detective")
+def check_if_correct(id, location):
+    global correct_visited_locations
+    if location == visited_locations[correct_visited_locations+1]:
+        correct_visited_locations += 1
+        print(f"\nYou solved the case and went to the correct country!\nYou are now in {location}. Good job!")
         return True
     else:
+        update_crime_location(id, 10)
+        print(f"\nYour answer is wrong. One more box of Ricina is dropped by ContaMega.\nYou are now in {location}.")
         return False
+
+def check_if_win(id):
+    global criminal_escaped
+    global visited_locations
+    crime_location= get_criminal_location(id)
+    print (visited_locations, visited_locations[correct_visited_locations], crime_location, correct_visited_locations)
+    if visited_locations[correct_visited_locations] == crime_location:
+        print(f"\nYou have catched the criminal and save the world. Well done, detective {name}")
+        return True
+    elif criminal_escaped == True:
+        print("\nThe criminals escaped, the world is dying. Maybe in another life, detective")
+        return True
+    else:
+        return None
 
 def check_exist_location(answer):
     answer_check = answer.casefold()
-    answer_check = answer.capitalize()
-    if answer_check in visited_locations:
+    answer_check = answer.title()
+    countries= get_countries()
+    if answer_check in countries:
         return answer_check
     else:
-        print("This country is invalid! Check the countries available in display countries")
+        print(f"\nThis country is invalid! Check the countries available in:\n\t'Option 2: Display possible countries'")
         return
 
-def player_name():
+def set_player_name():
+    global name
+    global id
     name = input("Enter your name, detective: ")
     sql = (f"insert into detective_game(detective_name) values('{name}');")
     cursor = connection.cursor()
     cursor.execute(sql)
+    id = cursor.lastrowid
     return name
