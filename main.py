@@ -9,21 +9,21 @@ db_functions.update_crime_location(db_functions.id, 10)
 
 while True:
     try:
-        option= int(input(f"\nSelect one of the following actions, agent {name}:\n1- Explore the crime scene\n2- Display possible countries\n3- Move to destination\n4- Close the case\nYour selection: "))
+        option = int(input(f"\nSelect one of the following actions, agent {name}:\n1- Explore the crime scene\n2- Display possible countries\n3- Move to destination\n4- Close the case\nYour selection: "))
         if option == 1:
             db_functions.get_hint_by_country(db_functions.visited_locations[db_functions.correct_visited_locations+1])
         elif option == 2:
-            countries= db_functions.get_countries()
+            countries = db_functions.get_countries()
             print("\nThe countries where we know Ricina could be release are:")
             for country in countries:
                 print(country)
         elif option == 3:
-            answer= input(f"Enter location, agent {name}:\n")
-            location= db_functions.check_exist_location(answer)
+            answer = input(f"Enter location, agent {name}:\n")
+            location = db_functions.check_location_exist(answer)
             if location:
                 db_functions.update_player_location(id, location)
-                correct= db_functions.check_if_correct(id, location)
-                win= db_functions.check_if_win(id)
+                correct = db_functions.check_if_correct(id, location)
+                win = db_functions.check_if_win(id)
                 if win:
                     break
         elif option == 4:
