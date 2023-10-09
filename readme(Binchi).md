@@ -20,4 +20,9 @@ Before running the game, you need to download the game database to you local com
   * `create database crime_game;`
   * `use crime_game;`
   * `source` *the path to crime_game.sql*;
-* Step 4: Change the password 
+* Step 4: Change the password of database connection in db_functions.py to your own password.
+
+Now you shall be able to run the main program.
+
+## How to play
+
