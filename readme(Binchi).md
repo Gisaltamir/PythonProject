@@ -26,3 +26,66 @@ Now you shall be able to run the main program.
 
 ## How to play
 
+This section will provide a step-by-step tutorial for the gameplay.
+
+### Getting started
+After running the program, a short text about the story and your mission will be displayed on the screen.
+> In a world full of threats, ... 
+> 
+> Red code alert! We need you, agent!It's your mission to stop them and their lethal creation Ricina. Using your skills as detective, you need to move to different locations where Ricina has been dumped and discover the secret code hiding behind the clues we've found. 
+> 
+> Hurry up and explore the first crime scene, before it's too late for the world...
+
+The game program will prompt you to enter your name. The name can be any combination of letters, numbers, or special characters. The name will be registered in your local database.
+
+### Gameplay
+As the game starts, four action options will be displayed on the console:
+
+> 1- Explore crime scene.
+> 
+> 2- Display possible countries.
+> 
+> 3- Move to destination.
+> 
+> 4- Close the case.
+> 
+> Your selection:
+
+**When you enter number 1**, the game will display one crime scene, i.e. the clue that points to the country where Conta Mega Inc. disposed Ricina. In the current version, the clues could be the following five types:
+
+> * Clues that contain keywords that are written backwards;
+> * Clues where certain letters are colored;
+> * Clues with keywords mixed with irrelevant letters;
+> * Clues where player need to decrypt with a table;
+> * Clues in morse code.
+
+As the detective, your mission is to figure out which country the clue is referring to.
+
+**When you enter number 2**, the game will print out a list of countries where Conta Mega Inc. could be committing their crime. This function will help you when you need to narrow down your options.
+
+> Your selection: 2
+> 
+> The countries where we know Ricina could be release are:
+> 
+> Argentina
+> 
+> Australia
+> 
+> ...
+
+**When you enter number 3**, the game will allow you to enter the country name. The input is not case-sensitive, but you must use the correctly-spelled, standard country name as provided by the game in *Display possible countries*.
+
+**When you enter number 4**, the game program will end. All your progress will be cleared. The next time you run the main program, it will create a new game. 
+
+### Winning or losing the game
+
+At the start of the game, Conta Mega Inc. has already disposed Ricina at **5** countries. Each time you input a correct country, the criminals will panic and not move to their next target. However, each time you enter a wrong country, Conta Mega Inc. will continue their plan.
+
+There are two possible endings:
+
+* You **WIN** the game if you catch the criminals, i.e. you visit the country they are currently in.
+* You **LOSE** the game if Conta Mega Inc. reaches their **10th** target country.
+
+<br>
+
+Now it's your time to shine, detective! Enjoy the game and let use know what you think!
