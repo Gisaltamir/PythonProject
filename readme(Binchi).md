@@ -1,6 +1,6 @@
 # R-Code Project: the game project for Metropolia IT Software 1
 
-R-Code Project is a flight-simulator puzzle game prototype created by Giselle Altamiranda, Tingyu Pan, Pawanrat Santiyanon, and Binchi Zhou, first year students from Metropolia University of Applied Sciences. R-Code project is the final project of the course Software 1. 
+R-Code Project is a flight-simulator puzzle game prototype created by Binchi Zhou, Giselle Altamiranda, Pawanrat Santiyanon and Tingyu Pan, first year students from Metropolia University of Applied Sciences. R-Code project is the final project of the course Software 1. 
 
 This game program uses python as the main programming language. The project database is based on the flight_game database provided by the course lecturers. The project team redesigned and named the database as "crime_game". The Python program communicate the database through MySQL driver.
 
@@ -12,10 +12,10 @@ The player is a special agent and environment specialist from the Interpol. The 
 
 ## Install and Run
 
-Before running the game, you need to download the game database to you local computer.
+Before running the game, you need to download the game database to your local computer.
 
-* Step 1: Clone the project code to you local computer. 
-* Step 2: Download a database management system if it's not yet ready on your machine. We recommend using [MariaDB](https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.3.0&os=windows&cpu=x86_64&pkg=msi&m=xtom_tal).
+* Step 1: Clone the project code to your local computer. 
+* Step 2: Download Python and a database management system if it's not yet installed on your machine. We recommend using [MariaDB](https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.3.0&os=windows&cpu=x86_64&pkg=msi&m=xtom_tal).
 * Step 3: Go to your SQL console, input pass word, and execute the following command:
   * `create database crime_game;`
   * `use crime_game;`
