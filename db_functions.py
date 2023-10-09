@@ -6,7 +6,7 @@ connection = mysql.connector.connect(
     port= 3306,
     database= "crime_game",
     user= "root",
-    password= "",
+    password= "123456",
     autocommit= True
 )
 
@@ -79,7 +79,6 @@ def update_player_location(id, location):
     cursor.execute(sql)
     countries = cursor.fetchall()
     return
-    
 def update_crime_location(id, number):
     global criminal_escaped
     global visited_locations
@@ -115,7 +114,7 @@ def check_if_win(id):
     global visited_locations
     crime_location= get_criminal_location(id)
     if visited_locations[correct_visited_locations] == crime_location:
-        print(f"\nYou have catched the criminal and save the world. Well done, detective {name}")
+        print(f"\nYou have caught the criminals and save the world. Well done, detective {name}")
         return True
     elif criminal_escaped == True:
         print("\nThe criminals escaped, the world is dying. Maybe in another life, detective")
