@@ -6,7 +6,7 @@ connection = mysql.connector.connect(
     port=3306,
     database="crime_game",
     user="root",
-    password="123456",
+    password="",
     autocommit=True
 )
 
@@ -101,21 +101,18 @@ def update_player_location(player_id, location):
 def update_crime_location(player_id, number):
     global criminal_escaped
     global visited_locations
-    sql = "SELECT country_name FROM hints;"
-    cursor = connection.cursor()
-    cursor.execute(sql)
-    countries = cursor.fetchall()
-    countries = [country[0] for country in countries]
-    while len(visited_locations) < number:
+    countries = get_countries()
+    if len(visited_locations)-1 == number:
+        criminal_escaped = True
+        return
+    while len(visited_locations)-1 < number:
         ran_num = random.randrange(0, number)
         if countries[ran_num] not in visited_locations:
+            cursor = connection.cursor()
             visited_locations.append(countries[ran_num])
             update_query = f"UPDATE detective_game SET crime_location = '{countries[ran_num]}' WHERE id = {player_id}"
             cursor.execute(update_query)
             break
-    if len(visited_locations) == number:
-        criminal_escaped = True
-        return
 
 
 def check_if_correct(player_id, location):
@@ -123,24 +120,24 @@ def check_if_correct(player_id, location):
     airport= get_airport(location)
     if location == visited_locations[correct_visited_locations+1]:
         correct_visited_locations += 1
-        print(f"\nYou solved the case and went to the correct country!\nYou are now in {airport}, {location}, one step closer to catch ContaMega Inc. Good job!")
+        print(f"\nYou solved the case and went to the correct country!\nYou are now in {airport}, {location},\none step closer to catch ContaMega Inc. Good job!")
         return True
     else:
         update_crime_location(player_id, 10)
-        print(f"\nYour answer is wrong. One more box of Ricina is dropped by ContaMega.\nYou are now in {location}.")
+        print(f"\nYour answer is wrong. One more box of Ricina is dropped by ContaMega.\nYou are now in {airport}, {location}.")
         return False
 
 
-def check_if_win(player_id):
+def check_if_win_or_lose(player_id):
     global criminal_escaped
     global visited_locations
     global name
     crime_location = get_criminal_location(player_id)
     if visited_locations[correct_visited_locations] == crime_location:
-        print(f"\nYou have caught ContaMega Inc. and saved the world, the R-code project worked as expected and Ricina is being controlled by our enviromental services. Well done, detective {name}")
+        print(f"\nYou have caught ContaMega Inc. and saved the world, the R-code\nproject worked as expected and Ricina is being controlled by our\nenviromental services.\n\nWell done, detective {name}, you solved the case as we expected.")
         return True
     elif criminal_escaped:
-        print(f"\nContaMega Inc. has released all the Ricina into the world. The world is dying and we are hopeless. Maybe in another life, detective {name}...")
+        print(f"\nContaMega Inc. has released all the Ricina into the world.\nThe world is dying and we are hopeless. Maybe in another\nlife, detective {name}...")
         return True
     else:
         return None
@@ -166,3 +163,4 @@ def set_player_name():
     cursor.execute(sql)
     id = cursor.lastrowid
     return name
+    
