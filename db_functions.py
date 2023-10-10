@@ -123,7 +123,7 @@ def check_if_correct(player_id, location):
     airport= get_airport(location)
     if location == visited_locations[correct_visited_locations+1]:
         correct_visited_locations += 1
-        print(f"\nYou solved the case and went to the correct country!\nYou are now in {airport}, {location}. Good job!")
+        print(f"\nYou solved the case and went to the correct country!\nYou are now in {airport}, {location}, one step closer to catch ContaMega Inc. Good job!")
         return True
     else:
         update_crime_location(player_id, 10)
@@ -134,12 +134,13 @@ def check_if_correct(player_id, location):
 def check_if_win(player_id):
     global criminal_escaped
     global visited_locations
+    global name
     crime_location = get_criminal_location(player_id)
     if visited_locations[correct_visited_locations] == crime_location:
-        print(f"\nYou have caught the criminals and save the world. Well done, detective {name}")
+        print(f"\nYou have caught ContaMega Inc. and saved the world, the R-code project worked as expected and Ricina is being controlled by our enviromental services. Well done, detective {name}")
         return True
     elif criminal_escaped:
-        print("\nThe criminals escaped, the world is dying. Maybe in another life, detective...")
+        print(f"\nContaMega Inc. has released all the Ricina into the world. The world is dying and we are hopeless. Maybe in another life, detective {name}...")
         return True
     else:
         return None
@@ -159,6 +160,7 @@ def set_player_name():
     global name
     global id
     name = input("Enter your name, detective: ")
+    name = name.title()
     sql = f"INSERT INTO detective_game(detective_name) VALUES('{name}');"
     cursor = connection.cursor()
     cursor.execute(sql)
