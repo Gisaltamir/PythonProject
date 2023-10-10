@@ -6,7 +6,6 @@ name = game.set_player_name()
 id = game.id
 game.random_visit_location("4")
 game.update_crime_location(game.id, 10)
-
 while True:
     try:
         option = int(input(f"\nSelect one of the following actions, agent {name}:\n1- Explore the crime scene\n2- Display possible countries\n3- Move to destination\n4- Close the case\nYour selection: "))
@@ -23,7 +22,7 @@ while True:
             if location:
                 game.update_player_location(id, location)
                 correct = game.check_if_correct(id, location)
-                win = game.check_if_win(id)
+                win = game.check_if_win_or_lose(id)
                 if win:
                     break
         elif option == 4:
@@ -32,4 +31,4 @@ while True:
         else:
             print(f"\nYou need to be serious, agent {name}.\nRead the options and insert a number from 1 to 4.")
     except:
-        print("\n\tContaMega Inc. is playing with our system and the program\nneeds to be checked by our R-code project team members.\nSend a message to your commander and wait for instructions.\nThis is not over, agent {name}.")
+        print("\n\tTry that again!\nContaMega Inc. could be playing with our system. If the problem persist, then the program\nneeds to be checked by our R-code project team members.\nSend a message to your commander and wait for instructions.\nThis is not over, agent {name}.")
