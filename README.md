@@ -12,13 +12,11 @@ The player is a special agent and environment specialist. The player is asked to
 
 ## Install and Run
 
-Before running the game, you need to download the game database to your local computer.
+Before running the game, you need to download the game database "crime_game.sql" to your local computer.
 
 * Step 1: Clone the project code to your local computer. 
 * Step 2: Download Python and a database management system if it's not yet installed on your machine. We recommend using [MariaDB](https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.3.0&os=windows&cpu=x86_64&pkg=msi&m=xtom_tal).
-* Step 3: Go to your SQL console, input pass word, and execute the following command:
-  * `create database crime_game;`
-  * `use crime_game;`
+* Step 3: Go to your SQL console, input your password, and execute the following command:
   * `source` the path to crime_game.sql;
 * Step 4: Change the password of database connection in db_functions.py to your own password.
 
@@ -56,7 +54,7 @@ As the game starts, four action options will be displayed in the console:
 > * Clues that contain keywords that are written backwards;
 > * Clues where certain letters are colored;
 > * Clues with keywords mixed with irrelevant letters;
-> * Clues where player need to decrypt with a table;
+> * Clues where the player needs to decrypt with a table;
 > * Clues in morse code.
 
 As the detective, your mission is to figure out which country the clue is referring to, and enter your answer in *3-Move to destination*.
@@ -77,7 +75,7 @@ As the detective, your mission is to figure out which country the clue is referr
 
 After you entering the country name, the game program will determine if the answer is correct.
 
-**When you enter number 4**, the game program will end. All your progress will be cleared. The next time you run the main program, it will create a new game. 
+**When you enter number 4**, the game program will end. All your progress will be cleared but stored in the database. The next time you run the main program, it will create a new game. 
 
 ### Winning or losing the game
 
@@ -85,12 +83,12 @@ At the start of the game, Conta Mega Inc. has already disposed Ricina at **5** c
 
 There are two possible endings:
 
-* You **WIN** the game if you catch the criminals, i.e. you visited all the countries where Conta Mega Inc. dropped Ricina, before Conta Mega reaches their **10th** destination.
-* You **LOSE** the game if Conta Mega Inc. reaches their **10th** target country.
+* You **WIN** the game if you catch the criminals, i.e. you visited all the countries where ContaMega Inc. dropped Ricina, before ContaMega reaches their **10th** destination.
+* You **LOSE** the game if ContaMega Inc. reaches their **10th** target country.
 
 <br>
 
-Now it's your time to shine, detective! Enjoy the game and let use know what you think!
+Now it's your time to shine, detective! Enjoy the game and let us know what you think!
 
 <br>
 
@@ -99,10 +97,8 @@ Now it's your time to shine, detective! Enjoy the game and let use know what you
 
 [Giselle Altamiranda](https://github.com/Gisaltamir)
 
-[Pawanrat Santiyanon]()
+[Pawanrat Santiyanon](https://github.com/NookPawanrat)
 
-[Tingyu Pan]()
-
-In alphabetical order.
+[Tingyu Pan](https://github.com/tingyup1)
 
 
