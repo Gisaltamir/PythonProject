@@ -31,4 +31,4 @@ while True:
         else:
             print(f"\nYou need to be serious, agent {name}.\nRead the options and insert a number from 1 to 4.")
     except:
-        print("\n\tTry that again!\nContaMega Inc. could be playing with our system. If the problem persist, then the program\nneeds to be checked by our R-code project team members.\nSend a message to your commander and wait for instructions.\nThis is not over, agent {name}.")
+        print(f"\nTry that again!\nContaMega Inc. could be playing with our system. If the problem\npersist, then the program needs to be checked by our\nR-code project team members.\nSend a message to your commander and wait for instructions.\nThis is not over, agent {name}.")
