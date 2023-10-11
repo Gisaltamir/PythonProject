@@ -6,7 +6,7 @@ connection = mysql.connector.connect(
     port=3306,
     database="crime_game",
     user="root",
-    password="",
+    password="123456",
     autocommit=True
 )
 
@@ -102,7 +102,7 @@ def update_crime_location(player_id, number):
     global criminal_escaped
     global visited_locations
     countries = get_countries()
-    if len(visited_locations)-1 == number:
+    if len(visited_locations) == number:
         criminal_escaped = True
         return
     while len(visited_locations)-1 < number:
@@ -163,4 +163,3 @@ def set_player_name():
     cursor.execute(sql)
     id = cursor.lastrowid
     return name
-    
